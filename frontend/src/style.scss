@@ -1,0 +1,67 @@
+$lightBackground: rgba(126, 19, 158, 0.267);
+$liveRed: #db324d;
+$gray: #56494e;
+$lightGray: #a29c9b;
+$chocolate: #511c29;
+.app {
+  .container {
+    //login register
+
+    .auth {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+      background-color: $gray;
+
+      h1 {
+        font-size: 1.3rem;
+        color: $liveRed;
+        margin-bottom: 1.2rem;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        width: 200px;
+        gap: 1rem;
+        padding: 1.2rem 2rem;
+        border-radius: 1rem;
+
+        input {
+          padding: 10px;
+          border: none;
+          border-bottom: 1px solid black;
+        }
+
+        button {
+          border: none;
+          background-color: $liveRed;
+          color: white;
+          font-size: 0.9rem;
+          text-transform: uppercase;
+          padding: 0.7rem 0.8rem;
+          cursor: pointer;
+          transition: ease-in-out 1;
+        }
+
+        button:hover {
+          background-color: $chocolate;
+        }
+
+        p {
+          font-size: 1rem;
+          color: red;
+          text-align: center;
+        }
+
+        span {
+          font-size: 0.92rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
