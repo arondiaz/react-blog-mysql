@@ -119,5 +119,49 @@ $chocolate: #511c29;
         }
       }
     }
+
+    //Footer
+
+    footer {
+      margin-top: 100px;
+      padding: 1.4rem;
+      background-color: $lightGray;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    //Home
+
+    .home {
+      .posts {
+        display: flex;
+        margin-top: 2rem;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      .post {
+        display: flex;
+        gap: 2rem;
+
+        &:nth-child(2n + 1) {
+          flex-direction: row-reverse;
+        }
+
+        .img {
+          flex: 1;
+
+          img {
+            width: 100%;
+            max-height: 380px;
+            object-fit: cover;
+          }
+        }
+
+        .content {
+          flex: 2;
+        }
+      }
+    }
   }
 }

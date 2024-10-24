@@ -1,9 +1,14 @@
-
-
+import { Coffee } from "lucide-react";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <div>Footer</div>
-  )
-}
+    <footer>
+      <Link>
+        <Coffee />
+      </Link>
+      <span>building..</span>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;
