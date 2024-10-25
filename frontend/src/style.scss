@@ -48,7 +48,7 @@ $chocolate: #511c29;
           background-color: $liveRed;
           color: white;
           font-size: 0.9rem;
-          text-transform: uppercase;
+          // text-transform: uppercase;
           padding: 0.7rem 0.8rem;
           cursor: pointer;
           transition: ease-in-out 1;
@@ -80,9 +80,9 @@ $chocolate: #511c29;
         justify-content: space-between;
         align-items: center;
 
-        .logo {
-          margin-bottom: 0.8rem;
-        }
+        // .logo {
+        //   margin-bottom: 0.8rem;
+        // }
 
         .links {
           display: flex;
@@ -108,13 +108,13 @@ $chocolate: #511c29;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+            // transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 
-            &:hover {
-              transform: scale(1.1);
+            // &:hover {
+            //   transform: scale(1.1);
 
-              opacity: 0.8;
-            }
+            //   opacity: 0.8;
+            // }
           }
         }
       }
@@ -295,14 +295,15 @@ $chocolate: #511c29;
     //Write
     .add {
       display: flex;
+      align-items: flex-start;
       gap: 1rem;
+      padding-top: 1rem;
 
       .content {
         flex: 5;
         display: flex;
         flex-direction: column;
         gap: 1.2rem;
-        margin-top: 1rem;
 
         input {
           border: none;
@@ -311,8 +312,9 @@ $chocolate: #511c29;
         }
 
         .editor-container {
+          width: 100%;
           height: 400px;
-          overflow: scroll;
+          overflow: auto;
           border: 1px solid $lightGray;
         }
 
@@ -328,7 +330,6 @@ $chocolate: #511c29;
         flex-direction: column;
         justify-content: center;
         gap: 1rem;
-        margin-top: 1rem;
 
         .item {
           border: 1px solid $lightGray;
