@@ -7,6 +7,7 @@ import Write from "./pages/Write";
 import Navbar from "./components/Navbar";
 import "./style.scss";
 import Footer from "./components/Footer";
+import Single from "./pages/Single";
 
 function App() {
   return (
@@ -16,11 +17,12 @@ function App() {
           <Navbar />
           <Routes>
             <Route path={"/"} element={<Home />} />
+            <Route path={"/post/:id"} element={<Single />} />
             <Route path={"/login"} element={<Login />} />
             <Route path={"/register"} element={<Register />} />
             <Route path={"/write"} element={<Write />} />
           </Routes>
-          <Footer/>
+          <Footer />
         </div>
       </div>
     </>
