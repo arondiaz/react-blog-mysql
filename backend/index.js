@@ -2,8 +2,10 @@ import express from "express";
 import routesPosts from "./routes/posts.js";
 import routesAuth from "./routes/auth.js";
 import routesUser from "./routes/user.js";
+import cors from "cors";
 
 const app = express();
+app.use(cors())
 
 const PORT = 4040;
 
