@@ -19,6 +19,11 @@ const Register = () => {
     e.preventDefault();
     const { username, email, password } = user;
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return setError("Invalid Email");
+    }
+
     if (
       username.trim() === "" ||
       email.trim() === "" ||
@@ -40,6 +45,7 @@ const Register = () => {
       console.log(data);
       navigate("/login");
     } catch (error) {
+      console.log(error);
       setError(error);
     }
   };
