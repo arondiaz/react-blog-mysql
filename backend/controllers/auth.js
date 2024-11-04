@@ -39,13 +39,19 @@ export const login = (req, res) => {
     if (data.length === 0) return res.status(404).json("User not found!");
 
     //Check password
-    const checkPassword = await bcrypt.compare(req.body.password, data[0].password);
+    const checkPassword = await bcrypt.compare(
+      req.body.password,
+      data[0].password
+    );
     if (!checkPassword) return res.status(400).json("Invalid password");
 
     const token = jwt.sign({ id: data[0].id }, process.env.TOKEN_SECRET);
     const { password, ...other } = data[0];
 
-    res.cookie("acces_token", token, {httpOnly: true,})
+    res
+      .cookie("access_token", token, {
+        httpOnly: true,
+      })
       .status(200)
       .json(other);
   });
