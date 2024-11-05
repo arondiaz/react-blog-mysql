@@ -26,6 +26,9 @@ const Login = () => {
       const url = `http://localhost:4040/api/auth/login`;
       const response = await fetch(url, {
         method: "POST",
+        mode: "cors",
+        credentials: "include",
+        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
