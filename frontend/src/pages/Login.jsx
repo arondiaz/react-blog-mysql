@@ -34,6 +34,14 @@ const Login = () => {
         },
         body: JSON.stringify(user),
       });
+      console.log(response);
+      if (!response.ok) {
+        if (response.status === 400) {
+          return setError("User doesn't exist");
+        } else {
+          return setError("Error, please try again");
+        }
+      }
       const data = await response.json();
       console.log(data);
       navigate("/");
