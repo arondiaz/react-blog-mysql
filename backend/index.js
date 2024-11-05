@@ -6,7 +6,11 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 const app = express();
-app.use(cors());
+let corsOptions = {
+  origin: "http://localhost:5173"
+};
+
+app.use(cors({ origin: corsOptions, credentials: true}));
 
 const PORT = 4040;
 
