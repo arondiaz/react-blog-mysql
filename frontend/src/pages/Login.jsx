@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/authContext";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -7,8 +8,10 @@ const Login = () => {
     password: "",
   });
 
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -21,32 +24,10 @@ const Login = () => {
     if (username.trim() === "" || password.trim() === "") {
       return setError("Invalid credentials");
     }
-
     try {
-      const url = `http://localhost:4040/api/auth/login`;
-      const response = await fetch(url, {
-        method: "POST",
-        mode: "cors",
-        credentials: "include",
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-      console.log(response);
-      if (!response.ok) {
-        if (response.status === 400) {
-          return setError("User doesn't exist");
-        } else {
-          return setError("Error, please try again");
-        }
-      }
-      const data = await response.json();
-      console.log(data);
-      navigate("/");
+      const success = await login(user);
+      success === undefined ? setError("Invalid username or password") : navigate("/");
     } catch (error) {
-      console.log(error);
       setError(error);
     }
   };
