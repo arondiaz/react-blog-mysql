@@ -1,7 +1,20 @@
 import { Coffee } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../context/authContext";
 
 const Navbar = () => {
+  const { logout, currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const response = await logout();
+      response === undefined ? alert("Error") : navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="navbar">
       <div className="container">
@@ -25,8 +38,8 @@ const Navbar = () => {
             <h6>WORK</h6>
           </Link>
 
-          <span>username</span>
-          <span>logout</span>
+          <span>{currentUser?.username}</span>
+          {currentUser ? <span onClick={handleLogout}>Logout</span> : <span><Link to={"/login"}>Login</Link></span>}
           <span className="write">
             <Link className="link" to={"/write"}>
               Write
