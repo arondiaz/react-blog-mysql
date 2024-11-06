@@ -58,5 +58,10 @@ export const login = (req, res) => {
 };
 
 export const logout = (req, res) => {
-  res.json("logout controller");
+  res.clearCookie("access_token", {
+    httpOnly: true,
+    sameSite: "none",
+    secure:true
+  });
+  res.status(200).json({ message: "Logged out successfully" });
 };
