@@ -36,12 +36,31 @@ export const AuthContextProvider = ({ children }) => {
     return true;
   };
 
+  const logout = async () => {
+    const url = `http://localhost:4040/api/auth/logout`;
+    const response = await fetch(url, {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      return console.error("Response error");
+    }
+    setCurrentUser(null);
+    return true;
+  };
+
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, login }}>
+    <AuthContext.Provider value={{ currentUser, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
