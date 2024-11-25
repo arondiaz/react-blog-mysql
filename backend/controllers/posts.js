@@ -13,7 +13,17 @@ export const getPosts = (req, res) => {
 };
 
 export const getPost = (req, res) => {
-  res.json("get post");
+  // const postId = req.params.id
+  //const q = "SELECT * FROM posts WHERE id=?"
+
+  const q =
+    "SELECT post.id, `username`, `title`, `description`, post.img, u.img AS userImg, `cat`,`date` FROM users u JOIN posts post ON u.id = post.uid WHERE post.id = ?";
+
+  db.query(q, [req.params.id], (err, data) => {
+    if (err) return res.send(err);
+
+    return res.status(200).json(data);
+  });
 };
 
 export const addPost = (req, res) => {
