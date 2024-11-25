@@ -1,26 +1,26 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Home = () => {
-  const posts = [
-    {
-      id: 1,
-      title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim vel ipsum commodi laboriosam.",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim vel ipsum commodi laboriosam voluptate quidem fugiat, cum voluptatibus consectetur ex officiis, dolorum numquam perspiciatis porro labore? Soluta sint odio minima.",
-      img: "https://images.pexels.com/photos/5077042/pexels-photo-5077042.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
-    {
-      id: 2,
-      title: "Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim vel ipsum commodi laboriosam Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim vel ipsum commodi laboriosam voluptate quidem fugiat, cum voluptatibus consectetur ex officiis, dolorum numquam perspiciatis porro labore? Soluta sint odio minima.",
-      img: "https://images.pexels.com/photos/5077042/pexels-photo-5077042.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
-    {
-      id: 3,
-      title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim vel ipsum commodi laboriosam.",
-      description: "LoremLorem ipsum dolor sit amet consectetur adipisicing elit. Enim vel ipsum commodi laboriosam voluptate quidem fugiat, cum voluptatibus consectetur ex officiis, dolorum numquam perspiciatis porro labore? Soluta sint odio minima.",
-      img: "https://images.pexels.com/photos/5077042/pexels-photo-5077042.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
-  ];
+  const [posts, setPosts] = useState([]);
+
+  const location = useLocation();
+
+  let cat = location.search;
+  useEffect(() => {
+    const url = `http://localhost:4040/api/post${cat}`;
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        setPosts(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [cat]);
 
   return (
     <div className="home">
@@ -33,15 +33,12 @@ const Home = () => {
             <div className="content">
               <Link className="link" to={`/post/${post.id}`}>
                 <h3>{post.title}</h3>
-
               </Link>
               <p>{post.description}</p>
 
               <Link className="link" to={`/post/${post.id}`}>
-
-              <button>Read More</button>
+                <button>Read More</button>
               </Link>
-
             </div>
           </div>
         ))}
@@ -51,4 +48,3 @@ const Home = () => {
 };
 
 export default Home;
-
